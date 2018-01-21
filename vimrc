@@ -1,6 +1,10 @@
 " Leader
 let mapleader = " "
 
+set wrap
+set linebreak
+set nolist  " list disables linebreak
+
 set backspace=2   " Backspace deletes like most programs in insert mode
 set nobackup
 set nowritebackup
@@ -92,7 +96,7 @@ if executable('ag')
 endif
 
 " Make it obvious where 80 characters is
-set textwidth=80
+set textwidth=120
 set colorcolumn=+1
 
 " Numbers
