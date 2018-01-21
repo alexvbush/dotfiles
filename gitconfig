@@ -12,6 +12,11 @@
   co = checkout
   pf = push --force-with-lease
   st = status
+  ca = commit
+  cc = commit
+  c = commit
+  ps = push
+  br = branch
 [core]
   excludesfile = ~/.gitignore
   autocrlf = input
@@ -25,5 +30,8 @@
   autosquash = true
 [include]
   path = ~/.gitconfig.local
+[user]
+  name = Alex Bush
+  email = alex.v.bush@gmail.com
 [diff]
   colorMoved = zebra
