@@ -1,9 +1,15 @@
 " Leader
-let mapleader = " "
+" let mapleader = " "
+let mapleader = ","
 
+"disable text wrapping and line breaks
 set wrap
 set linebreak
 set nolist  " list disables linebreak
+set textwidth=0
+set wrapmargin=0
+
+set number relativenumber
 
 set backspace=2   " Backspace deletes like most programs in insert mode
 set nobackup
@@ -50,16 +56,16 @@ augroup vimrcEx
   autocmd BufRead,BufNewFile .{jscs,jshint,eslint}rc set filetype=json
 
   " ALE linting events
-  if g:has_async
-    set updatetime=1000
-    let g:ale_lint_on_text_changed = 0
-    autocmd CursorHold * call ale#Lint()
-    autocmd CursorHoldI * call ale#Lint()
-    autocmd InsertEnter * call ale#Lint()
-    autocmd InsertLeave * call ale#Lint()
-  else
-    echoerr "The thoughtbot dotfiles require NeoVim or Vim 8"
-  endif
+ " if g:has_async
+ "   set updatetime=1000
+ "   let g:ale_lint_on_text_changed = 0
+ "   autocmd CursorHold * call ale#Lint()
+ "   autocmd CursorHoldI * call ale#Lint()
+ "   autocmd InsertEnter * call ale#Lint()
+  "  autocmd InsertLeave * call ale#Lint()
+  "else
+ "   echoerr "The thoughtbot dotfiles require NeoVim or Vim 8"
+  "endif
 augroup END
 
 " When the type of shell script is /bin/sh, assume a POSIX-compatible
@@ -94,10 +100,6 @@ if executable('ag')
     nnoremap \ :Ag<SPACE>
   endif
 endif
-
-" Make it obvious where 80 characters is
-set textwidth=120
-set colorcolumn=+1
 
 " Numbers
 set number
@@ -151,8 +153,8 @@ nnoremap <C-h> <C-w>h
 nnoremap <C-l> <C-w>l
 
 " Move between linting errors
-nnoremap ]r :ALENextWrap<CR>
-nnoremap [r :ALEPreviousWrap<CR>
+"nnoremap ]r :ALENextWrap<CR>
+"nnoremap [r :ALEPreviousWrap<CR>
 
 " Set spellfile to location that is guaranteed to exist, can be symlinked to
 " Dropbox or kept in Git and managed outside of thoughtbot/dotfiles using rcm.
@@ -167,4 +169,10 @@ set diffopt+=vertical
 " Local config
 if filereadable($HOME . "/.vimrc.local")
   source ~/.vimrc.local
+endif
+
+" MacVim setup to have it behave more like a normal Mac editor (i.e. shif +
+" arrow highlights the text)
+if has("gui_macvim")
+    let macvim_hig_shift_movement = 1
 endif
